@@ -5,14 +5,14 @@ class DependenciesDecisionEntity {
     String version
     String shortLicenseName
     String homepage
-    boolean approove
+    boolean approve
 
-    DependenciesDecisionEntity(String projectName, String version, String shortLicenseName, String homepage, boolean approove) {
+    DependenciesDecisionEntity(String projectName, String version, String shortLicenseName, String homepage, boolean approve) {
         this.projectName = projectName
         this.version = version
         this.shortLicenseName = shortLicenseName
         this.homepage = homepage
-        this.approove = approove
+        this.approve = approve
     }
 
     String getProjectName() {
@@ -47,11 +47,11 @@ class DependenciesDecisionEntity {
         this.homepage = homepage
     }
 
-    boolean getApproove() {
-        return approove
+    boolean getApprove() {
+        return approve
     }
 
-    void setApproove(boolean approove) {
-        this.approove = approove
+    void setApprove(boolean approve) {
+        this.approove = approve
     }
 }
