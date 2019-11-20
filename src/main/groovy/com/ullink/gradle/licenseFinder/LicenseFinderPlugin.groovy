@@ -23,17 +23,17 @@ class LicenseFinderPlugin implements Plugin<Project> {
         def installLicenseFinder = project.tasks.create('installLicenseFinder', GemInstallTask)
 
 
-        def checkLicensesTask  =  project.tasks.create('checkLicenses', JRubyExec)
+        def checkLicensesTask = project.tasks.create('checkLicenses', JRubyExec)
         checkLicensesTask.description extension.checkLicensesDescription
         checkLicensesTask.script extension.checkLicensesScript
         checkLicensesTask.scriptArgs extension.checkLicensesScriptArgs
 
         def addProjectNameTask = project.tasks.create("addProjectName", ProjectNameTask, project)
         def makeDecisionFileTask = project.tasks.create("makeDecisionFile", MakeDecisionTask, project)
-        def makeWhtieListTask = project.tasks.create("makeWhiteList", WhiteListTask, project)
+        def makeWhiteListTask = project.tasks.create("makeWhiteList", WhiteListTask, project)
 
         makeDecisionFileTask.dependsOn(installLicenseFinder)
-        makeDecisionFileTask.dependsOn(makeWhtieListTask)
+        makeDecisionFileTask.dependsOn(makeWhiteListTask)
         makeDecisionFileTask.dependsOn(addProjectNameTask)
         checkLicensesTask.dependsOn(makeDecisionFileTask)
     }
