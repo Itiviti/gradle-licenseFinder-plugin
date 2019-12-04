@@ -48,5 +48,4 @@ plugindev {
     done()
 }
 
-
 afterReleaseBuild.dependsOn bintrayUpload

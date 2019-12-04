@@ -11,6 +11,7 @@ class LicenseFinderExtension {
     File checkLicensesScript
     ArrayList<DependenciesDecisionEntity> decisions
     ArrayList<String> whiteList
+    String licenseFinderVersion
 
     LicenseFinderExtension(Project project) {
         this.dependencyConfiguration = "runtime"
@@ -19,6 +20,7 @@ class LicenseFinderExtension {
         this.checkLicensesScript = StreamUtil.streamToFile(this.class.getResourceAsStream('/entrypoint.rb'))
         this.decisions = []
         this.whiteList = ["MIT", "AGPL-3.0", "GPL-3.0", "LGPL-3.0", "MPL-2.0", "APACHE-2.0", "UNLICENSE"]
+        this.licenseFinderVersion = "license_finder:5.10.2"
     }
 
     def  DependencyConfiguration(String value) {

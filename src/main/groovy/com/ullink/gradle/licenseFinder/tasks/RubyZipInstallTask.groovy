@@ -5,16 +5,16 @@ import org.gradle.api.Project
 
 import javax.inject.Inject
 
-class GemInstallTask extends JRubyExec {
-    private final String licenseFinder = "license_finder"
-    private final String licenseFinderVersion = "5.10.2"
+class RubyZipInstallTask extends JRubyExec {
+    private final String RubyZip = "rubyzip"
+    private final String RubyZipVersion = "1.3.0"
     private ArrayList<String> params = []
     @Inject
-    GemInstallTask(Project project) {
+    RubyZipInstallTask(Project project) {
         super()
         this.setProxy("http")
         this.script "gem"
-        this.scriptArgs "install", params.join(' ') ,licenseFinder, "-v ${licenseFinderVersion}"
+        this.scriptArgs "install", params.join(' ') ,RubyZip, "-v ${RubyZipVersion}"
     }
 
     void setProxy(String protocol) {
