@@ -19,8 +19,6 @@ class LicenseFinderPlugin implements Plugin<Project> {
         project.apply plugin: LicensePlugin
         project.apply plugin: JRubyPlugin
 
-        project.tasks.downloadLicenses.dependencyConfiguration extension.dependencyConfiguration
-
         def installRubyZip = project.tasks.create('installRubyZip', RubyZipInstallTask, project)
         def installLicenseFinder = project.tasks.create('installLicenseFinder', GemInstallTask, project)
         installLicenseFinder.dependsOn(installRubyZip)

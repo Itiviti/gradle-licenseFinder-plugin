@@ -12,15 +12,18 @@ class GemInstallTask extends JRubyExec {
     @Inject
     GemInstallTask(Project project) {
         super()
-        this.setProxy("http")
+        this.setProxy()
         this.script "gem"
         this.scriptArgs "install", params.join(' ') ,licenseFinder, "-v ${licenseFinderVersion}"
     }
 
-    void setProxy(String protocol) {
-        String hostProperty = "systemProp.${protocol}.proxyHost"
-        String portProperty = "systemProp.${protocol}.proxyPort"
-        if (project.property(hostProperty) && project.property(portProperty))
-            params.add("--http-proxy=${protocol}://${project.property(hostProperty)}:${project.property(portProperty)}")
+    void setProxy() {
+        String hostProperty = "proxyHost"
+        String portProperty = "proxyPort"
+        if (project.properties.find { it.key.contains(hostProperty)}  && project.properties.find {it.key.contains(portProperty)} ){
+            String keyPorpertyHost = project.properties.find { it.key.contains(hostProperty)}.key
+            String keyPropertyPort = project.properties.find {it.key.contains(portProperty)}.key
+            params.add("--http-proxy=http://${project.findProperty(keyPorpertyHost)}:${project.findProperty(keyPropertyPort)}")
+        }
     }
 }
