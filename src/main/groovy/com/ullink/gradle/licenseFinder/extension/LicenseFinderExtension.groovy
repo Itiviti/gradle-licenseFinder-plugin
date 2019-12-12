@@ -15,7 +15,7 @@ class LicenseFinderExtension {
 
     LicenseFinderExtension(Project project) {
         this.dependencyConfiguration = "runtime"
-        this.checkLicensesScriptArgs = ["--project-path=${project.buildDir.parent.toString()}"]
+        this.checkLicensesScriptArgs = []
         this.checkLicensesDescription = "check License for dependencies project"
         this.checkLicensesScript = StreamUtil.streamToFile(this.class.getResourceAsStream('/entrypoint.rb'))
         this.decisions = []
