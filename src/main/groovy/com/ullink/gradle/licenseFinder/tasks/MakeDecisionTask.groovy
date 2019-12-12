@@ -16,16 +16,16 @@ class MakeDecisionTask extends DefaultTask {
     private ArrayList<String> scriptArgs
 
     @Inject
-    MakeDecisionTask(Project project){
+    MakeDecisionTask(Project project) {
         this.decisions = project.extensions.licenseFinder.decisions
         this.entrypointFile = project.extensions.licenseFinder.checkLicensesScript
         this.scriptArgs = ["dependencies", "add"]
     }
 
     @TaskAction
-    exec(){
-        decisions.forEach { descision ->
-            def args = this.scriptArgs.join(descision.projectName, decisions.shortLicenseName, decisions.version, (decisions.homepage) ? "--homepage=${descision.homepage}" : "", (descision.approove) ? "--approove" : "")
+    exec() {
+        decisions.forEach { decision  ->
+            def args = this.scriptArgs.join(decision .projectName, decision.shortLicenseName, decision.version, (decision.homepage) ? "--homepage=${decision.homepage}" : "", (decision.approove) ? "--approove" : "")
             def ex = new JRubyExec(script: this.entrypointFile, scriptArgs: args)
             ex.exec()
         }

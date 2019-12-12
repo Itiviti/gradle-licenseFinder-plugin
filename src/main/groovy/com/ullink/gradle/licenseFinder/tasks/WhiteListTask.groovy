@@ -13,7 +13,7 @@ class WhiteListTask extends DefaultTask {
 
     @Inject
     WhiteListTask(Project project) {
-        if(project.extensions.licenseFinder.whiteList.size() > 0)
+        if (project.extensions.licenseFinder.whiteList.size() > 0)
             this.whiteList = project.extensions.licenseFinder.whiteList
         else
             this.whiteList = []
@@ -23,7 +23,7 @@ class WhiteListTask extends DefaultTask {
 
     @TaskAction
     exec() {
-        this.whiteList.forEach {it ->
+        this.whiteList.forEach { it ->
             def args = ["whitelist", "add", it]
             def ex = new JRubyExec(script: this.entrypointFile, scriptArgs: args)
             ex.exec()
