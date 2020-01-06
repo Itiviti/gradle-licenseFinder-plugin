@@ -15,7 +15,7 @@ class ProjectNameTask extends DefaultTask {
     @Inject
     ProjectNameTask(Project project) {
         scriptEntrypoint = project.extensions.licenseFinder.checkLicensesScript
-        scriptArgs = ["project_anme", "add"]
+        scriptArgs = ["project_name", "add"]
     }
 
     @TaskAction

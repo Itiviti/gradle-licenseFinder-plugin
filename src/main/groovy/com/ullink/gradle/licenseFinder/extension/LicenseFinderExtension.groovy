@@ -14,14 +14,14 @@ class LicenseFinderExtension {
 
     LicenseFinderExtension(Project project) {
         this.dependencyConfiguration = "runtime"
-        this.checkLicensesScriptArgs = ["--project-path=${project.path}", "--gradle-command=${project.path}"]
+        this.checkLicensesScriptArgs = []
         this.checkLicensesDescription = "check License for dependencies project"
         this.checkLicensesScript = StreamUtil.streamToFile(this.class.getResourceAsStream('/entrypoint.rb'))
         this.decisions = []
         this.whiteList = ["MIT", "AGPL-3.0", "GPL-3.0", "LGPL-3.0", "MPL-2.0", "APACHE-2.0", "UNLICENSE"]
     }
 
-    def  DependencyConfiguration(String value) {
+    def DependencyConfiguration(String value) {
         this.dependencyConfiguration = value
     }
 
@@ -33,7 +33,7 @@ class LicenseFinderExtension {
         this.checkLicensesScript = value
     }
 
-    def CheckLicensesDescription(){
+    def CheckLicensesDescription() {
         return this.checkLicensesDescription
     }
 
@@ -42,14 +42,14 @@ class LicenseFinderExtension {
     }
 
     def Decisions() {
-        return  this.decisions
+        return this.decisions
     }
 
-    def WhiteList(ArrayList<String> value){
+    def WhiteList(ArrayList<String> value) {
         this.whiteList = value
     }
 
-    def WhitheList(){
+    def WhitheList() {
         return this.whiteList
     }
 }

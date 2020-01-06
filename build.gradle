@@ -8,7 +8,7 @@ plugins {
     id 'com.jfrog.bintray' version '1.8.4'
     id 'net.researchgate.release' version '2.6.0'
     id 'de.undercouch.download' version '3.4.3'
-    id 'nu.studer.plugindev' version '1.0.9'
+    id 'nu.studer.plugindev' version '1.0.12'
 }
 
 description 'Gradle plugin for LicenseFinder.'
@@ -47,6 +47,5 @@ plugindev {
     projectInceptionYear '2012'
     done()
 }
-
 
 afterReleaseBuild.dependsOn bintrayUpload
