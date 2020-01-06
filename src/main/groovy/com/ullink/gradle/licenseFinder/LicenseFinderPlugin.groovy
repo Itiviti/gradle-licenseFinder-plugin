@@ -23,6 +23,7 @@ class LicenseFinderPlugin implements Plugin<Project> {
         def installLicenseFinder = project.tasks.create('installLicenseFinder', GemInstallTask, project)
         installLicenseFinder.dependsOn(installRubyZip)
 
+
         def checkLicensesTask = project.tasks.create('checkLicenses', JRubyExec)
         checkLicensesTask.description extension.checkLicensesDescription
         checkLicensesTask.script extension.checkLicensesScript
