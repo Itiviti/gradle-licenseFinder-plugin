@@ -21,7 +21,7 @@ dependencies {
     compile 'net.java.dev.jna:jna-platform:4.2.2'
     compile 'com.google.guava:guava:27.0.1-jre'
     compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.10.0'
-    compile 'com.github.jruby-gradle:jruby-gradle-plugin:1.6.0'
+    compile 'com.github.jruby-gradle:jruby-gradle-plugin:2.0.0'
 }
 
 bintray {

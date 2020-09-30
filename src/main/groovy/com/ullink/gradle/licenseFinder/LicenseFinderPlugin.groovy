@@ -2,10 +2,8 @@ package com.ullink.gradle.licenseFinder
 
 import com.github.jrubygradle.JRubyExec
 import com.ullink.gradle.licenseFinder.extension.LicenseFinderExtension
-import com.ullink.gradle.licenseFinder.tasks.GemInstallTask
 import com.ullink.gradle.licenseFinder.tasks.MakeDecisionTask
 import com.ullink.gradle.licenseFinder.tasks.ProjectNameTask
-import com.ullink.gradle.licenseFinder.tasks.RubyZipInstallTask
 import com.ullink.gradle.licenseFinder.tasks.WhiteListTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -19,10 +17,14 @@ class LicenseFinderPlugin implements Plugin<Project> {
         project.apply plugin: LicensePlugin
         project.apply plugin: JRubyPlugin
 
-        def installRubyZip = project.tasks.create('installRubyZip', RubyZipInstallTask, project)
-        def installLicenseFinder = project.tasks.create('installLicenseFinder', GemInstallTask, project)
-        installLicenseFinder.dependsOn(installRubyZip)
+        project.repositories {
+            ruby.gems()
+        }
 
+        project.dependencies {
+            gems 'rubygems:rubyzip:1.3.0'
+            gems 'rubygems:license_finder:5.10.2'
+        }
 
         def checkLicensesTask = project.tasks.create('checkLicenses', JRubyExec)
         checkLicensesTask.description extension.checkLicensesDescription
@@ -33,7 +35,6 @@ class LicenseFinderPlugin implements Plugin<Project> {
         def makeDecisionFileTask = project.tasks.create("makeDecisionFile", MakeDecisionTask, project)
         def makeWhiteList = project.tasks.create("makeWhiteList", WhiteListTask, project)
 
-        makeDecisionFileTask.dependsOn(installLicenseFinder)
         makeDecisionFileTask.dependsOn(makeWhiteList)
         makeDecisionFileTask.dependsOn(addProjectNameTask)
         checkLicensesTask.dependsOn(makeDecisionFileTask)
